@@ -7,7 +7,11 @@ Entity* initEntity(float x, float y)
 {
     Entity* e = malloc(sizeof(Entity));
 
-    Color colors[3] = {RED, GREEN, BLUE};
+    Color colors[3] = {
+        {130,0,250,255},
+        {0,180,250,255},
+        {80,0,200,255},
+    };
 
     e->drawComponent = malloc(sizeof(DrawComponent));
     e->drawComponent->color = colors[GetRandomValue(0,2)];
