@@ -4,6 +4,9 @@
 #include "component/DrawComponent.h"
 #include "component/VelocityComponent.h"
 
+extern int ENTITY_COUNT;
+
+
 typedef struct Entity
 {
     DrawComponent* drawComponent;

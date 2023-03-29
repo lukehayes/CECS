@@ -1,6 +1,8 @@
 #include "entity/Entity.h"
 #include <stdlib.h>
 
+int ENTITY_COUNT = 100;
+
 Entity* initEntity(float x, float y)
 {
     Entity* e = malloc(sizeof(Entity));
