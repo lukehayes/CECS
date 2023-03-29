@@ -6,7 +6,7 @@
 
 float delta = 0.0;
 float c = 0.0;
-int MAX = 5;
+int MAX = 1000;
 Color BGCOLOR = {250, 243, 221, 255};
 
 typedef struct DrawComponent
@@ -19,16 +19,26 @@ typedef struct DrawComponent
 
 } DrawComponent;
 
+typedef struct VelocityComponent
+{
+    float vx;
+    float vy;
+    float speed;
+
+} VelocityComponent;
+
 
 typedef struct Entity
 {
     DrawComponent* drawComponent;
+    VelocityComponent* velocityComponent;
 
 } Entity;
 
 void freeEntity(Entity* e)
 {
     free(e->drawComponent);
+    free(e->velocityComponent);
     free(e);
 
     e->drawComponent = NULL;
@@ -38,24 +48,26 @@ Entity* initEntity(float x, float y)
 {
     Entity* e = malloc(sizeof(Entity));
 
+    Color colors[3] = {RED, GREEN, BLUE};
+
     e->drawComponent = malloc(sizeof(DrawComponent));
-    e->drawComponent->color = BLUE;
+    e->drawComponent->color = colors[GetRandomValue(0,2)];
     e->drawComponent->x = x; 
     e->drawComponent->y = y; 
     e->drawComponent->w = 10; 
     e->drawComponent->h = 10; 
+
+    e->velocityComponent = malloc(sizeof(VelocityComponent));
+    e->velocityComponent->vx = GetRandomValue(-1,1);
+    e->velocityComponent->vy = GetRandomValue(-1,1);
+    e->velocityComponent->speed = GetRandomValue(10,400);
 
     return e;
 }
 
 void DrawEntity(Entity* e)
 {
-
     if(e->drawComponent == NULL) return;
-
-
-    BeginDrawing();
-        ClearBackground(BLACK);
 
         DrawRectangle(
             e->drawComponent->x,
@@ -64,13 +76,19 @@ void DrawEntity(Entity* e)
             e->drawComponent->h,
             e->drawComponent->color
         );
-
-
-    EndDrawing();
-
 }
 
+void MoveEntity(Entity* e, float dt)
+{
+    if(e->drawComponent == NULL) return;
+    if(e->velocityComponent == NULL) return;
 
+    e->drawComponent->x += e->velocityComponent->vx *
+                          e->velocityComponent->speed * dt;
+
+    e->drawComponent->y += e->velocityComponent->vy *
+                          e->velocityComponent->speed * dt;
+}
 
 
 int main() {
@@ -81,16 +99,25 @@ int main() {
     SetTargetFPS(60);
     // -------------------------------------------
 
+    Entity* ents[MAX];
+
+    for(int i = 0; i<= MAX-1; i++)
+    {
+        Entity* e = initEntity(
+                GetRandomValue(10,500),
+                GetRandomValue(10,500)
+                );
+        ents[i] = e;
+    }
+
+
+
     // ENTITY INITIALIZATION
     Entity* e1 = initEntity(
             GetRandomValue(10,500),
             GetRandomValue(10,500)
             );
 
-    Entity* e2 = initEntity(
-            GetRandomValue(10,500),
-            GetRandomValue(10,500)
-            );
 
 
     while (!WindowShouldClose()) {
@@ -98,8 +125,22 @@ int main() {
         delta = GetFrameTime();
         c += 0.01;
 
-        DrawEntity(e1);
-        DrawEntity(e2);
+        for(int i = 0; i<= MAX-1; i++)
+        {
+            MoveEntity(ents[i], delta);
+        }
+
+
+        ClearBackground(BLACK);
+        BeginDrawing();
+            DrawEntity(e1);
+
+            for(int i = 0; i<= MAX-1; i++)
+            {
+                DrawEntity(ents[i]);
+            }
+
+        EndDrawing();
 
         // BeginDrawing();
         //     ClearBackground(BLACK);
@@ -107,6 +148,11 @@ int main() {
     }
 
     freeEntity(e1);
+
+    for(int i = 0; i<= MAX-1; i++)
+    {
+        freeEntity(ents[i]);
+    }
 
     CloseWindow();
 
