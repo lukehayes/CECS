@@ -7,12 +7,13 @@
 /**
  * Move an entity with velocity for example.
  *
- * @param Entity* e.
+ * @param Entity** ents.
+ * @param int count.
  * @param float dt.
  *
  * @return void.
  */
-void MoveSystem(Entity* e, float dt);
+void MoveSystem(Entity** ents, int count, float dt);
 
 
 #endif //ECS_MOVE_SYSTEM_H

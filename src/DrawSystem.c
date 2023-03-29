@@ -1,8 +1,14 @@
 #include "system/DrawSystem.h"
 
-void DrawSystem(Entity* e)
+void DrawSystem(Entity** ents, int count)
 {
-    if(e->drawComponent == NULL) return;
+
+    BeginDrawing();
+    for(int i = 0; i <= count - 1; i++)
+    {
+        Entity* e = ents[i];
+
+        if(e->drawComponent == NULL) return;
 
         DrawRectangle(
             e->drawComponent->x,
@@ -11,6 +17,10 @@ void DrawSystem(Entity* e)
             e->drawComponent->h,
             e->drawComponent->color
         );
+
+    }
+
+    EndDrawing();
 }
 
 

@@ -7,11 +7,13 @@
 /**
  * Draw an entity.
  *
- * @param Entity* e.
+ * @param Entity** ents.
+ *
+ * @param int count.
  *
  * @return void.
  */
-void DrawSystem(Entity* e);
+void DrawSystem(Entity** ents, int count);
 
 
 #endif //ECS_DRAW_SYSTEM_H
