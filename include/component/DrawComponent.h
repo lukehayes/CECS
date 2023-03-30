@@ -5,8 +5,6 @@
 
 typedef struct DrawComponent
 {
-    float x;
-    float y;
     float w;
     float h;
     Color color;
