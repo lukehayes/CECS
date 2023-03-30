@@ -3,6 +3,7 @@
 
 #include "component/DrawComponent.h"
 #include "component/TransformComponent.h"
+#include "component/SpriteComponent.h"
 
 
 extern int ENTITY_COUNT;
@@ -12,6 +13,7 @@ typedef struct Entity
 {
     DrawComponent* drawComponent;
     TransformComponent* transformComponent;
+    SpriteComponent* spriteComponent;
 
 } Entity;
 

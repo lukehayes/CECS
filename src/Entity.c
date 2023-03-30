@@ -1,6 +1,7 @@
 #include "entity/Entity.h"
 #include <stdlib.h>
 
+// XXX Using 10,000+ with textures is slow! 100,000 is slow with DrawRect.
 int ENTITY_COUNT = 10;
 
 Entity* initEntity(float x, float y)
@@ -31,13 +32,26 @@ Entity* initEntity(float x, float y)
     e->transformComponent->vy = GetRandomValue(-1,1);
     e->transformComponent->speed = GetRandomValue(10,400);
 
+
+    // spriteComponent
+    e->spriteComponent = malloc(sizeof(TransformComponent));
+    e->spriteComponent->texture = LoadTexture("../assets/debug_sprite.png");
+    e->spriteComponent->tint = colors[GetRandomValue(0,2)];
+
     return e;
 }
 
 void freeEntity(Entity* e)
 {
-    free(e->drawComponent);
-    free(e->transformComponent);
+    if(e->drawComponent)
+        free(e->drawComponent);
+
+    if(e->transformComponent)
+        free(e->transformComponent);
+
+    if(e->spriteComponent)
+        free(e->spriteComponent);
+
     free(e);
 
     e->drawComponent = NULL;
