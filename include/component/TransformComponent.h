@@ -13,6 +13,8 @@ typedef struct TransformComponent
   float dx; // Direction X (-1 or -)
   float dy; // Direction Y ( -1 or 1)
   float speed; // Speed of entity movement
+  float w;
+  float h;
 
 } TransformComponent;
 
