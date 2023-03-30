@@ -3,6 +3,9 @@
 
 #include "raylib.h"
 
+/**
+ * A static sprite component that is designed to use a single image.
+ */
 typedef struct SpriteComponent
 {
 
