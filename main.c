@@ -4,9 +4,6 @@
 #include "entity/Entity.h"
 
 // Components
-#include "component/DrawComponent.h"
-#include "component/VelocityComponent.h"
-#include "entity/Entity.h"
 
 // Systems
 #include "system/DrawSystem.h"
@@ -43,7 +40,6 @@ int main() {
             GetRandomValue(10,500),
             GetRandomValue(10,500)
             );
-
 
     while (!WindowShouldClose()) {
 

@@ -8,11 +8,12 @@ void DrawSystem(Entity** ents, int count)
     {
         Entity* e = ents[i];
 
+        if(e->transformComponent == NULL) return;
         if(e->drawComponent == NULL) return;
 
         DrawRectangle(
-            e->drawComponent->x,
-            e->drawComponent->y,
+            e->transformComponent->x,
+            e->transformComponent->y,
             e->drawComponent->w,
             e->drawComponent->h,
             e->drawComponent->color

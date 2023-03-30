@@ -8,26 +8,26 @@ void MoveSystem(Entity** ents, int count, float dt)
         Entity* e = ents[i];
 
         if(e->drawComponent == NULL) return;
-        if(e->velocityComponent == NULL) return;
+        if(e->transformComponent == NULL) return;
 
-        e->drawComponent->x += e->velocityComponent->vx *
-                              e->velocityComponent->speed * dt;
+        e->transformComponent->x += e->transformComponent->vx *
+                              e->transformComponent->speed * dt;
 
-        e->drawComponent->y += e->velocityComponent->vy *
-                              e->velocityComponent->speed * dt;
+        e->transformComponent->y += e->transformComponent->vy *
+                              e->transformComponent->speed * dt;
 
-        int x = e->drawComponent->x; 
-        int y = e->drawComponent->y; 
+        int x = e->transformComponent->x; 
+        int y = e->transformComponent->y; 
 
         if(x <= 0 || x > 1260)
         {
-            e->velocityComponent->vx = -e->velocityComponent->vx;
+            e->transformComponent->vx = -e->transformComponent->vx;
 
         }
 
         if(y <= 0 || y > 700)
         {
-            e->velocityComponent->vy = -e->velocityComponent->vy;
+            e->transformComponent->vy = -e->transformComponent->vy;
 
         }
 

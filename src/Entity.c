@@ -1,7 +1,7 @@
 #include "entity/Entity.h"
 #include <stdlib.h>
 
-int ENTITY_COUNT = 10000;
+int ENTITY_COUNT = 10;
 
 Entity* initEntity(float x, float y)
 {
@@ -15,17 +15,21 @@ Entity* initEntity(float x, float y)
 
     int size = GetRandomValue(2,10);
 
+    // DrawComponent
     e->drawComponent = malloc(sizeof(DrawComponent));
     e->drawComponent->color = colors[GetRandomValue(0,2)];
-    e->drawComponent->x = x; 
-    e->drawComponent->y = y; 
     e->drawComponent->w = size;
     e->drawComponent->h = size; 
 
-    e->velocityComponent = malloc(sizeof(VelocityComponent));
-    e->velocityComponent->vx = GetRandomValue(-1,1);
-    e->velocityComponent->vy = GetRandomValue(-1,1);
-    e->velocityComponent->speed = GetRandomValue(10,400);
+    // TransformComponent
+    e->transformComponent = malloc(sizeof(TransformComponent));
+    e->transformComponent->x = x;
+    e->transformComponent->y = y;
+    e->transformComponent->dx = GetRandomValue(-1,1);
+    e->transformComponent->dy = GetRandomValue(-1,1);
+    e->transformComponent->vx = GetRandomValue(-1,1);
+    e->transformComponent->vy = GetRandomValue(-1,1);
+    e->transformComponent->speed = GetRandomValue(10,400);
 
     return e;
 }
@@ -33,7 +37,7 @@ Entity* initEntity(float x, float y)
 void freeEntity(Entity* e)
 {
     free(e->drawComponent);
-    free(e->velocityComponent);
+    free(e->transformComponent);
     free(e);
 
     e->drawComponent = NULL;

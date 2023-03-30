@@ -2,7 +2,8 @@
 #define ECS_ENTITY_H
 
 #include "component/DrawComponent.h"
-#include "component/VelocityComponent.h"
+#include "component/TransformComponent.h"
+
 
 extern int ENTITY_COUNT;
 
@@ -10,7 +11,7 @@ extern int ENTITY_COUNT;
 typedef struct Entity
 {
     DrawComponent* drawComponent;
-    VelocityComponent* velocityComponent;
+    TransformComponent* transformComponent;
 
 } Entity;
 
