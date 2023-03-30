@@ -9,24 +9,31 @@ void DrawSystem(Entity** ents, int count)
         Entity* e = ents[i];
 
         if(e->transformComponent == NULL) return;
-        if(e->drawComponent == NULL) return;
-        if(e->spriteComponent == NULL) return;
 
-        DrawTexture(
-                e->spriteComponent->texture,
+
+        if(e->spriteComponent)
+        {
+            DrawTexture(
+                    e->spriteComponent->texture,
+                    e->transformComponent->x,
+                    e->transformComponent->y,
+                    e->spriteComponent->tint
+            );
+
+        }else if(e->drawComponent)
+        {
+            DrawRectangle(
                 e->transformComponent->x,
                 e->transformComponent->y,
-                WHITE
-        );
+                e->transformComponent->w,
+                e->transformComponent->h,
+                ORANGE
+            );
 
-        // DrawRectangle(
-        //     e->transformComponent->x,
-        //     e->transformComponent->y,
-        //     e->drawComponent->w,
-        //     e->drawComponent->h,
-        //     e->drawComponent->color
-        // );
-
+        }else
+        {
+            return;
+        }
     }
 
     EndDrawing();
