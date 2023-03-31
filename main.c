@@ -1,5 +1,7 @@
 #include "raylib.h"
 
+#include "engine.h"
+
 // Entity
 #include "entity/Entity.h"
 
@@ -20,7 +22,7 @@ int main() {
 
     // BASE INITIALIZATION
     SetTraceLogLevel(LOG_ALL);
-    InitWindow(1280, 720, "ECS");
+    InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, GAME_TITLE);
     SetTargetFPS(60);
     // -------------------------------------------
 
