@@ -9,7 +9,7 @@
 typedef struct SpriteComponent
 {
 
-  Texture2D texture;
+  Texture2D* texture;
   Color tint;
 
 } SpriteComponent;

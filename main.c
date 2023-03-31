@@ -9,6 +9,7 @@
 #include "system/DrawSystem.h"
 #include "system/MoveSystem.h"
 
+#include "component/util/TextureFactory.h"
 // --------------------------------------------------
 
 float delta = 0.0;
@@ -22,6 +23,9 @@ int main() {
     InitWindow(1280, 720, "ECS");
     SetTargetFPS(60);
     // -------------------------------------------
+
+    textureFactory = initTextureFactory();
+
 
     Entity* ents[ENTITY_COUNT];
 

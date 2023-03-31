@@ -14,7 +14,7 @@ void DrawSystem(Entity** ents, int count)
         if(e->spriteComponent)
         {
             DrawTexture(
-                    e->spriteComponent->texture,
+                    *e->spriteComponent->texture,
                     e->transformComponent->x,
                     e->transformComponent->y,
                     e->spriteComponent->tint
