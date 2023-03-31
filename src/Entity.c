@@ -39,8 +39,8 @@ Entity* initEntity(float x, float y)
     ImageResize(&img, 16 * 10, 16 * 10);
 
     // SpriteComponent
-    e->spriteComponent = malloc(sizeof(TransformComponent));
     e->spriteComponent->texture = LoadTextureFromImage(img);
+    e->spriteComponent = malloc(sizeof(SpriteComponent));
     e->spriteComponent->tint = colors[GetRandomValue(0,2)];
 
     UnloadImage(img);
