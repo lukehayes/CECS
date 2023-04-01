@@ -1,6 +1,5 @@
 #include "raylib.h"
-
-#include "engine.h"
+#include "Engine.h"
 
 // Entity
 #include "entity/Entity.h"
@@ -16,41 +15,27 @@
 
 float delta = 0.0;
 float c = 0.0;
-Color BGCOLOR = {250, 243, 221, 255};
 
 int main() {
 
-    // BASE INITIALIZATION
-    SetTraceLogLevel(LOG_ALL);
-    InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, GAME_TITLE);
-    SetTargetFPS(60);
-    // -------------------------------------------
+    // ENGINE INITIALIZATION
+    initEngine();
 
     textureFactory = initTextureFactory();
 
-
     Entity* ents[ENTITY_COUNT];
-
-    for(int i = 0; i<= ENTITY_COUNT-1; i++)
-    {
-        Entity* e = initEntity(
-                GetRandomValue(10,500),
-                GetRandomValue(10,500)
-                );
-        ents[i] = e;
-    }
-
 
     // ENTITY INITIALIZATION
     Entity* e1 = initEntity(
             GetRandomValue(10,500),
             GetRandomValue(10,500)
             );
+    
+    ents[0] = e1;
 
     while (!WindowShouldClose()) {
 
         delta = GetFrameTime();
-        c += 0.01;
 
         MoveSystem(ents, ENTITY_COUNT, delta);
 
@@ -60,10 +45,10 @@ int main() {
 
     freeEntity(e1);
 
-    for(int i = 0; i<= ENTITY_COUNT-1; i++)
-    {
-        freeEntity(ents[i]);
-    }
+    // for(int i = 0; i<= ENTITY_COUNT-1; i++)
+    // {
+    //     freeEntity(ents[i]);
+    // }
 
     CloseWindow();
 
