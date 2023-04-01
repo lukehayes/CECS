@@ -6,7 +6,7 @@
 TextureFactory* textureFactory;
 
 // XXX Using 10,000+ with textures is slow! 100,000 is slow with DrawRect.
-int ENTITY_COUNT = 100;
+int ENTITY_COUNT = 1;
 
 Entity* initEntity(float x, float y)
 {
@@ -48,7 +48,7 @@ Entity* initEntity(float x, float y)
     // SpriteComponent
     e->spriteComponent = malloc(sizeof(SpriteComponent));
     e->spriteComponent->texture = &textureFactory->debug_sprite;
-    e->spriteComponent->tint = colors[GetRandomValue(0,2)];
+    e->spriteComponent->tint = WHITE;
 
     return e;
 }
