@@ -9,8 +9,13 @@ void DrawSystem(Entity** ents, int count, Color clearColor)
     {
         Entity* e = ents[i];
 
-        if(e->transformComponent == NULL) return;
+        // XXX Removed check for SpriteComponent for now.
 
+        if(e->transformComponent == NULL)
+        {
+            LOG("NO TRANSFORM COMPONENT");
+            return;
+        }
 
         if(e->spriteComponent)
         {

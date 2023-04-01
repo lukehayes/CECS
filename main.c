@@ -20,18 +20,19 @@ int main() {
 
     // ENGINE INITIALIZATION
     initEngine();
-    textureFactory = initTextureFactory();
+    // textureFactory = initTextureFactory();
     // ----------------------------------------------
 
     Entity* ents[ENTITY_COUNT];
 
-    // ENTITY INITIALIZATION
-    Entity* e1 = initEntity();
-
-    addTransformComponent(e1, 10,10,30,30);
-    // addSpriteComponent(e1, "../assets/debug_player.png", 10,10);
+    for(int i = 0; i <= ENTITY_COUNT - 1; i++)
+    {
+        Entity* e = initEntity();
+        addTransformComponent(e, i * 10, i * 10,5,5);
+        addSpriteComponent(e, "../assets/debug_sprite.png",10,10);
+        ents[i] = e;
+    }
     
-    ents[0] = e1;
 
     while (!WindowShouldClose()) {
 
@@ -41,12 +42,10 @@ int main() {
         DrawSystem(ents, ENTITY_COUNT, BLACK);
     }
 
-    freeEntity(e1);
-
-    // for(int i = 0; i<= ENTITY_COUNT-1; i++)
-    // {
-    //     freeEntity(ents[i]);
-    // }
+    for(int i = 0; i<= ENTITY_COUNT-1; i++)
+    {
+        freeEntity(ents[i]);
+    }
 
     CloseWindow();
 
