@@ -20,8 +20,8 @@ int main() {
 
     // ENGINE INITIALIZATION
     initEngine();
-
     textureFactory = initTextureFactory();
+    // ----------------------------------------------
 
     Entity* ents[ENTITY_COUNT];
 
@@ -38,9 +38,7 @@ int main() {
         delta = GetFrameTime();
 
         MoveSystem(ents, ENTITY_COUNT, delta);
-
-        ClearBackground(BLACK);
-        DrawSystem(ents, ENTITY_COUNT);
+        DrawSystem(ents, ENTITY_COUNT, BLACK);
     }
 
     freeEntity(e1);

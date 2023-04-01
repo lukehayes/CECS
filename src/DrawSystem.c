@@ -1,8 +1,8 @@
 #include "system/DrawSystem.h"
 
-void DrawSystem(Entity** ents, int count)
+void DrawSystem(Entity** ents, int count, Color clearColor)
 {
-
+    ClearBackground(clearColor);
     BeginDrawing();
     for(int i = 0; i <= count - 1; i++)
     {
