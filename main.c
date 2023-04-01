@@ -26,10 +26,10 @@ int main() {
     Entity* ents[ENTITY_COUNT];
 
     // ENTITY INITIALIZATION
-    Entity* e1 = initEntity(
-            GetRandomValue(10,500),
-            GetRandomValue(10,500)
-            );
+    Entity* e1 = initEntity();
+
+    addTransformComponent(e1, 10,10,30,30);
+    // addSpriteComponent(e1, "../assets/debug_player.png", 10,10);
     
     ents[0] = e1;
 

@@ -8,48 +8,13 @@ TextureFactory* textureFactory;
 // XXX Using 10,000+ with textures is slow! 100,000 is slow with DrawRect.
 int ENTITY_COUNT = 1;
 
-Entity* initEntity(float x, float y)
+//-----------------------------------------------------------------------------
+// CONSTRUCTOR/DESTRUCTOR
+//-----------------------------------------------------------------------------
+
+Entity* initEntity()
 {
     Entity* e = malloc(sizeof(Entity));
-
-    Color colors[3] = {
-        {130,0,250,255},
-        {0,180,250,255},
-        {80,0,200,255},
-    };
-
-    int size = GetRandomValue(2,10);
-
-    // DrawComponent
-    e->drawComponent = malloc(sizeof(DrawComponent));
-    e->drawComponent->color = colors[GetRandomValue(0,2)];
-    e->drawComponent->w = size;
-    e->drawComponent->h = size; 
-
-    // TransformComponent
-    e->transformComponent = malloc(sizeof(TransformComponent));
-    e->transformComponent->x = x;
-    e->transformComponent->y = y;
-    e->transformComponent->w = 8;
-    e->transformComponent->h = 8;
-    e->transformComponent->dx = GetRandomValue(-1,1);
-    e->transformComponent->dy = GetRandomValue(-1,1);
-    e->transformComponent->vx = GetRandomValue(-1,1);
-    e->transformComponent->vy = GetRandomValue(-1,1);
-    e->transformComponent->speed = GetRandomValue(10,400);
-
-
-    // TextureFactory* tf = initTextureFactory();
-
-    // Image img = LoadImage("../assets/debug_sprite.png");
-    // ImageResize(&img, 16 * 10, 16 * 10);
-    //
-
-    // SpriteComponent
-    e->spriteComponent = malloc(sizeof(SpriteComponent));
-    e->spriteComponent->texture = &textureFactory->debug_sprite;
-    e->spriteComponent->tint = WHITE;
-
     return e;
 }
 
@@ -70,4 +35,45 @@ void freeEntity(Entity* e)
     free(e);
 
     e->drawComponent = NULL;
+}
+//-----------------------------------------------------------------------------
+// COMPONENT FUNCTIONS
+//-----------------------------------------------------------------------------
+
+void addTransformComponent(Entity* ent, int x, int y, int w, int h)
+{
+    // TransformComponent
+    ent->transformComponent = malloc(sizeof(TransformComponent));
+    ent->transformComponent->x = x;
+    ent->transformComponent->y = y;
+    ent->transformComponent->w = w;
+    ent->transformComponent->h = h;
+    ent->transformComponent->dx = GetRandomValue(-1,1);
+    ent->transformComponent->dy = GetRandomValue(-1,1);
+    ent->transformComponent->vx = GetRandomValue(-1,1);
+    ent->transformComponent->vy = GetRandomValue(-1,1);
+    ent->transformComponent->speed = GetRandomValue(10,400);
+}
+
+
+void addSpriteComponent(Entity* ent, const char* imagePath, int sx, int sy)
+{
+    // TODO Need some kind of hashmap for this. Will
+    // implement something later when I learn
+    // how it should be done.
+    
+    Image img = LoadImage(imagePath);
+    ImageResize(&img, 16 * sx, 16 * sy);
+    ent->spriteComponent = malloc(sizeof(SpriteComponent));
+    *ent->spriteComponent->texture = LoadTextureFromImage(img);
+    ent->spriteComponent->tint = WHITE;
+}
+
+void addDrawComponent(Entity* e, int size)
+{
+    // DrawComponent
+    e->drawComponent = malloc(sizeof(DrawComponent));
+    e->drawComponent->color = LIGHTGRAY;
+    e->drawComponent->w = size;
+    e->drawComponent->h = size; 
 }

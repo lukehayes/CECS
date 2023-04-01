@@ -1,4 +1,5 @@
 #include "system/DrawSystem.h"
+#include "logging.h"
 
 void DrawSystem(Entity** ents, int count, Color clearColor)
 {
@@ -13,6 +14,7 @@ void DrawSystem(Entity** ents, int count, Color clearColor)
 
         if(e->spriteComponent)
         {
+            LOG("HAS SPRITE COMPONENT");
             DrawTexture(
                     *e->spriteComponent->texture,
                     e->transformComponent->x,
@@ -20,8 +22,9 @@ void DrawSystem(Entity** ents, int count, Color clearColor)
                     e->spriteComponent->tint
             );
 
-        }else if(e->drawComponent)
+        }else
         {
+            LOG("DRAW FROM TRANSFORM COMPONENT");
             DrawRectangle(
                 e->transformComponent->x,
                 e->transformComponent->y,
@@ -30,9 +33,6 @@ void DrawSystem(Entity** ents, int count, Color clearColor)
                 ORANGE
             );
 
-        }else
-        {
-            return;
         }
     }
 

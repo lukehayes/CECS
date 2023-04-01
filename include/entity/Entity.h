@@ -17,6 +17,10 @@ typedef struct Entity
 
 } Entity;
 
+//-----------------------------------------------------------------------------
+// CONSTRUCTOR/DESTRUCTOR
+//-----------------------------------------------------------------------------
+
 /**
  * Create an instance of an entity. Basically a constructor.
  *
@@ -27,7 +31,7 @@ typedef struct Entity
  *
  * @retrun Entity*
  */
-Entity* initEntity(float x, float y);
+Entity* initEntity();
 
 /**
  * Destroy an allocated entity and all of its components.
@@ -37,5 +41,51 @@ Entity* initEntity(float x, float y);
  * @retrun void
  */
 void freeEntity(Entity* e);
+
+
+//-----------------------------------------------------------------------------
+// COMPONENT FUNCTIONS
+//-----------------------------------------------------------------------------
+
+/**
+ * Set the transform component of this entity.
+ *
+ * Calls malloc so return value needs to be freed.
+ *
+ * @param Entity* ent.
+ * @param float x.
+ * @param float y.
+ * @param float w.
+ * @param float h.
+ *
+ * @retrun void*
+ */
+void addTransformComponent(Entity* e, int x, int y, int w, int h);
+
+/**
+ * Set the sprite component of this entity.
+ *
+ * Calls malloc so return value needs to be freed.
+ *
+ * @param Entity* ent.
+ * @param const char* imagePath.
+ * @param int sx.
+ * @param int sy.
+ *
+ * @retrun void*
+ */
+void addSpriteComponent(Entity* e, const char* imagePath, int sx, int sy);
+
+/**
+ * Set the draw component of this entity.
+ *
+ * Calls malloc so return value needs to be freed.
+ *
+ * @param Entity* ent.
+ * @param int size.
+ *
+ * @retrun void*
+ */
+void addDrawComponent(Entity* e, int size);
 
 #endif //ECS_ENTITY_H
