@@ -15,6 +15,11 @@ int ENTITY_COUNT = 1;
 Entity* initEntity()
 {
     Entity* e = malloc(sizeof(Entity));
+
+    e->drawComponent      = NULL;
+    e->transformComponent = NULL;
+    e->spriteComponent    = NULL;
+
     return e;
 }
 
