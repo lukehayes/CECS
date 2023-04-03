@@ -73,9 +73,6 @@ void addSpriteComponent(Entity* ent, const char* imagePath, int sx, int sy)
     // TODO Need some kind of hashmap for this. Will
     // implement something later when I learn
     // how it should be done.
-    
-    Image img = LoadImage(imagePath);
-    ImageResize(&img, 16 * sx, 16 * sy);
 
     ent->spriteComponent = malloc(sizeof(SpriteComponent));
 
