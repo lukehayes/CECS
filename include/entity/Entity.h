@@ -77,6 +77,15 @@ void addTransformComponent(Entity* e, int x, int y, int w, int h);
 void addSpriteComponent(Entity* e, const char* imagePath, int sx, int sy);
 
 /**
+ * Set a timer component on this entity
+ *
+ * @param Entity* e.
+ *
+ * @return void.
+ */
+void addTimerCompnent(Entity* e);
+
+/**
  * Set the draw component of this entity.
  *
  * Calls malloc so return value needs to be freed.

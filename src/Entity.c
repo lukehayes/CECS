@@ -3,6 +3,8 @@
 
 #include "component/util/TextureFactory.h"
 
+#include "callbacks/ColorChange.h"
+
 TextureFactory* textureFactory;
 
 // XXX Using 10,000+ with textures is slow! 100,000 is slow with DrawRect.
@@ -81,6 +83,11 @@ void addSpriteComponent(Entity* ent, const char* imagePath, int sx, int sy)
     *ent->spriteComponent->texture = textureFactory->debug_sprite;
 
     ent->spriteComponent->tint = WHITE;
+}
+
+void addTimerCompnent(Entity* e)
+{
+
 }
 
 void addDrawComponent(Entity* e, int size)

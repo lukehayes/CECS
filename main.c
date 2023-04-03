@@ -9,6 +9,7 @@
 // Systems
 #include "system/DrawSystem.h"
 #include "system/MoveSystem.h"
+#include "system/TimerSystem.h"
 
 #include "component/util/TextureFactory.h"
 // --------------------------------------------------
@@ -38,6 +39,8 @@ int main() {
     while (!WindowShouldClose()) {
 
         delta = GetFrameTime();
+
+        TimerSystem(ents, ENTITY_COUNT, delta);
 
         MoveSystem(ents, ENTITY_COUNT, delta);
         DrawSystem(ents, ENTITY_COUNT, BLACK);
