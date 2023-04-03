@@ -15,6 +15,7 @@ typedef struct TransformComponent
   float speed; // Speed of entity movement
   float w;
   float h;
+  Color color;
 
 } TransformComponent;
 

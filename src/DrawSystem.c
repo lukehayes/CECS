@@ -35,7 +35,7 @@ void DrawSystem(Entity** ents, int count, Color clearColor)
                 e->transformComponent->y,
                 e->transformComponent->w,
                 e->transformComponent->h,
-                ORANGE
+                e->transformComponent->color
             );
 
         }

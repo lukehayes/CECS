@@ -64,6 +64,7 @@ void addTransformComponent(Entity* ent, int x, int y, int w, int h)
     ent->transformComponent->vx = GetRandomValue(-1,1);
     ent->transformComponent->vy = GetRandomValue(-1,1);
     ent->transformComponent->speed = GetRandomValue(10,400);
+    ent->transformComponent->color = ORANGE;
 }
 
 
