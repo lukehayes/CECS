@@ -11,7 +11,6 @@
  */
 typedef struct TextureFactory
 {
-
   Texture debug_sprite;
   Texture debug_player;
 
