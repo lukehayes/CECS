@@ -31,11 +31,17 @@ void freeEntity(Entity* e)
     if(e->transformComponent)
         free(e->transformComponent);
 
-    // if(e->spriteComponent)
-    // {
-    //     UnloadTexture(*e->spriteComponent->texture);
-    //     free(e->spriteComponent);
-    // }
+    if(e->spriteComponent)
+    {
+        // XXX SpriteComponent->texture lives on the GPU and is freed
+        // at a later time when freeTextureFactory() is called
+        // at the end of the program.
+        LOG("Freeing Allocated Texture Space");
+        free(e->spriteComponent->texture);
+
+        LOG("Freeing Sprite Component");
+        free(e->spriteComponent);
+    }
 
     free(e);
 
@@ -69,8 +75,13 @@ void addSpriteComponent(Entity* ent, const char* imagePath, int sx, int sy)
     
     Image img = LoadImage(imagePath);
     ImageResize(&img, 16 * sx, 16 * sy);
+
     ent->spriteComponent = malloc(sizeof(SpriteComponent));
-    *ent->spriteComponent->texture = LoadTextureFromImage(img);
+
+    // This is needed otherwise a segfault happens.
+    ent->spriteComponent->texture = malloc(sizeof(Texture2D));
+    *ent->spriteComponent->texture = textureFactory->debug_sprite;
+
     ent->spriteComponent->tint = WHITE;
 }
 

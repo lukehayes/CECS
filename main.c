@@ -20,15 +20,16 @@ int main() {
 
     // ENGINE INITIALIZATION
     initEngine();
-    // textureFactory = initTextureFactory();
+    textureFactory = initTextureFactory();
     // ----------------------------------------------
 
     Entity* ents[ENTITY_COUNT];
 
     for(int i = 0; i <= ENTITY_COUNT - 1; i++)
     {
+        int n = 400;
         Entity* e = initEntity();
-        addTransformComponent(e, i * 10, i * 10,5,5);
+        addTransformComponent(e, GetRandomValue(0,n), GetRandomValue(0,n),5,5);
         addSpriteComponent(e, "../assets/debug_sprite.png",10,10);
         ents[i] = e;
     }
@@ -46,6 +47,8 @@ int main() {
     {
         freeEntity(ents[i]);
     }
+
+    freeTextureFactory(textureFactory);
 
     CloseWindow();
 
