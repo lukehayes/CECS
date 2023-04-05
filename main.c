@@ -35,8 +35,9 @@ int main() {
         int n = 400;
         Entity* e = initEntity();
         addTransformComponent(e, GetRandomValue(0,n), GetRandomValue(0,n),5,5);
-        addSpriteComponent(e, "../assets/debug_sprite.png",10,10);
-        addTimerCompnent(e, 0, 3, false, CB_ChangeColor);
+        // addSpriteComponent(e, "../assets/debug_sprite.png",10,10);
+
+        addTimerCompnent(e, 0, GetRandomValue(0,3), false, CB_ChangeColor);
         ents[i] = e;
     }
     
@@ -45,8 +46,9 @@ int main() {
 
         delta = GetFrameTime();
 
-        TimerSystem(ents, ENTITY_COUNT, delta);
 
+
+        TimerSystem(ents, ENTITY_COUNT, delta);
         MoveSystem(ents, ENTITY_COUNT, delta);
         DrawSystem(ents, ENTITY_COUNT, BLACK);
     }
