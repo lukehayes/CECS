@@ -87,6 +87,7 @@ void addTimerCompnent(Entity* e, int index, float duration, bool oneshot, void (
     TimerComponent* timer = malloc(sizeof(TimerComponent));
     timer->duration = duration;
     timer->oneshot  = oneshot;
+    timer->timeleft = duration;
     timer->callback = cb;
 
     e->timers[index] = timer;
