@@ -4,4 +4,5 @@ add_library(CECS
   DrawSystem.c
   TimerSystem.c
   TextureFactory.c
+  Externs.c
 )

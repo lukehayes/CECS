@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "Engine.h"
+#include "Externs.h"
 
 // Entity
 #include "entity/Entity.h"
