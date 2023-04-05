@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "component/util/TextureFactory.h"
+#include "system/TimerSystem.h"
 #include "Externs.h"
 
 TextureFactory* textureFactory;
@@ -29,6 +30,14 @@ void freeEntity(Entity* e)
 
     if(e->transformComponent)
         free(e->transformComponent);
+
+    for(int i = 0; i<= MAX_TIMER_COUNT - 1; i++)
+    {
+        LOG("FREEING TIMER");
+        TimerComponent* t = e->timers[i];
+        if(t) free(t);
+    }
+
 
     if(e->spriteComponent)
     {
