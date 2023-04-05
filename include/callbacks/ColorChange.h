@@ -6,8 +6,14 @@
 
 void CB_ChangeColor(Entity* e)
 {
-  Color colors[3] = {RED, GREEN, BLUE};
-  e->transformComponent->color = colors[GetRandomValue(0,3)];
+  Color color = {
+    GetRandomValue(150,105),
+    GetRandomValue(150,165),
+    GetRandomValue(160,255),
+    GetRandomValue(200,255)
+  };
+
+  e->transformComponent->color = color;
 }
 
 #endif // CB_COLOR_CHANGE_H
