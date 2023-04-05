@@ -12,6 +12,9 @@
 #include "system/TimerSystem.h"
 
 #include "component/util/TextureFactory.h"
+
+#include "callbacks/ColorChange.h"
+
 // --------------------------------------------------
 
 float delta = 0.0;
@@ -32,6 +35,9 @@ int main() {
         Entity* e = initEntity();
         addTransformComponent(e, GetRandomValue(0,n), GetRandomValue(0,n),5,5);
         addSpriteComponent(e, "../assets/debug_sprite.png",10,10);
+        // addTimerCompnent(e, 0, 3, false, CB_ChangeColor);
+
+        CB_ChangeColor(e);
         ents[i] = e;
     }
     
