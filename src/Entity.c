@@ -2,13 +2,11 @@
 #include <stdlib.h>
 
 #include "component/util/TextureFactory.h"
-
-#include "callbacks/ColorChange.h"
+#include "system/TimerSystem.h"
+#include "Externs.h"
 
 TextureFactory* textureFactory;
 
-// XXX Using 10,000+ with textures is slow! 100,000 is slow with DrawRect.
-int ENTITY_COUNT = 10;
 
 //-----------------------------------------------------------------------------
 // CONSTRUCTOR/DESTRUCTOR
@@ -22,6 +20,12 @@ Entity* initEntity()
     e->transformComponent = NULL;
     e->spriteComponent    = NULL;
 
+    // Set all timers to NULL
+    for(int i = 0; i <= MAX_TIMER_COUNT-1; i++)
+    {
+        e->timers[i] = NULL;
+    }
+
     return e;
 }
 
@@ -32,6 +36,14 @@ void freeEntity(Entity* e)
 
     if(e->transformComponent)
         free(e->transformComponent);
+
+    for(int i = 0; i<= MAX_TIMER_COUNT - 1; i++)
+    {
+        LOG("FREEING TIMER");
+        TimerComponent* t = e->timers[i];
+        if(t) free(t);
+    }
+
 
     if(e->spriteComponent)
     {
@@ -67,6 +79,7 @@ void addTransformComponent(Entity* ent, int x, int y, int w, int h)
     ent->transformComponent->vy = GetRandomValue(-1,1);
     ent->transformComponent->speed = GetRandomValue(10,400);
     ent->transformComponent->color = ORANGE;
+
 }
 
 
@@ -85,8 +98,15 @@ void addSpriteComponent(Entity* ent, const char* imagePath, int sx, int sy)
     ent->spriteComponent->tint = WHITE;
 }
 
-void addTimerCompnent(Entity* e)
+void addTimerCompnent(Entity* e, int index, float duration, bool oneshot, void (*cb)(Entity*))
 {
+    TimerComponent* timer = malloc(sizeof(TimerComponent));
+    timer->duration = duration;
+    timer->oneshot  = oneshot;
+    timer->timeleft = duration;
+    timer->callback = cb;
+
+    e->timers[index] = timer;
 
 }
 

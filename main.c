@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "Engine.h"
+#include "Externs.h"
 
 // Entity
 #include "entity/Entity.h"
@@ -12,6 +13,9 @@
 #include "system/TimerSystem.h"
 
 #include "component/util/TextureFactory.h"
+
+#include "callbacks/TimerCallback.h"
+
 // --------------------------------------------------
 
 float delta = 0.0;
@@ -31,7 +35,10 @@ int main() {
         int n = 400;
         Entity* e = initEntity();
         addTransformComponent(e, GetRandomValue(0,n), GetRandomValue(0,n),5,5);
-        addSpriteComponent(e, "../assets/debug_sprite.png",10,10);
+        // addSpriteComponent(e, "../assets/debug_sprite.png",10,10);
+
+        addTimerCompnent(e, 0, GetRandomValue(1,3), false, TMCB_ChangeColor);
+        addTimerCompnent(e, 1, GetRandomValue(4,8), false, TMCB_ChangeSize);
         ents[i] = e;
     }
     
@@ -41,7 +48,6 @@ int main() {
         delta = GetFrameTime();
 
         TimerSystem(ents, ENTITY_COUNT, delta);
-
         MoveSystem(ents, ENTITY_COUNT, delta);
         DrawSystem(ents, ENTITY_COUNT, BLACK);
     }

@@ -4,6 +4,7 @@
 #include "component/DrawComponent.h"
 #include "component/TransformComponent.h"
 #include "component/SpriteComponent.h"
+#include "component/TimerComponent.h"
 
 
 extern int ENTITY_COUNT;
@@ -14,6 +15,8 @@ typedef struct Entity
     DrawComponent* drawComponent;
     TransformComponent* transformComponent;
     SpriteComponent* spriteComponent;
+    TimerComponent* timers[10];
+
 
 } Entity;
 
@@ -80,10 +83,15 @@ void addSpriteComponent(Entity* e, const char* imagePath, int sx, int sy);
  * Set a timer component on this entity
  *
  * @param Entity* e.
+ * @param int index - position in timers array (0-9)
+ * @param float duration.
+ * @param bool oneshot
+ * @param void cb    Callback function to run on timer completion.
+ *
  *
  * @return void.
  */
-void addTimerCompnent(Entity* e);
+void addTimerCompnent(Entity* e, int index, float duration, bool oneshot, void (*cb)(Entity*));
 
 /**
  * Set the draw component of this entity.
