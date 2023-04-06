@@ -1,6 +1,8 @@
 #ifndef COMP_TRANSFORM_H
 #define COMP_TRANSFORM_H
 
+#include "raylib.h"
+
 /**
  * Transform component that holds positional data.
  */
