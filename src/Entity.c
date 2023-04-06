@@ -20,6 +20,12 @@ Entity* initEntity()
     e->transformComponent = NULL;
     e->spriteComponent    = NULL;
 
+    // Set all timers to NULL
+    for(int i = 0; i <= MAX_TIMER_COUNT-1; i++)
+    {
+        e->timers[i] = NULL;
+    }
+
     return e;
 }
 
@@ -73,6 +79,7 @@ void addTransformComponent(Entity* ent, int x, int y, int w, int h)
     ent->transformComponent->vy = GetRandomValue(-1,1);
     ent->transformComponent->speed = GetRandomValue(10,400);
     ent->transformComponent->color = ORANGE;
+
 }
 
 
