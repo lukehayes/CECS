@@ -1,5 +1,5 @@
-#ifndef CB_COLOR_CHANGE_H
-#define CB_COLOR_CHANGE_H
+#ifndef CB_TIMER_CALLBACK_H
+#define CB_TIMER_CALLBACK_H
 
 #include "raylib.h"
 #include "entity/Entity.h"

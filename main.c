@@ -14,7 +14,7 @@
 
 #include "component/util/TextureFactory.h"
 
-#include "callbacks/ColorChange.h"
+#include "callbacks/TimerCallback.h"
 
 // --------------------------------------------------
 

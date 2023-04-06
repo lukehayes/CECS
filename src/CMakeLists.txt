@@ -5,4 +5,5 @@ add_library(CECS
   TimerSystem.c
   TextureFactory.c
   Externs.c
+  TimerCallback.c
 )
