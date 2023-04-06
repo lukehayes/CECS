@@ -4,16 +4,20 @@
 #include "raylib.h"
 #include "entity/Entity.h"
 
-void CB_ChangeColor(Entity* e)
-{
-  Color color = {
-    GetRandomValue(150,105),
-    GetRandomValue(150,165),
-    GetRandomValue(160,255),
-    GetRandomValue(200,255)
-  };
+/**
+ * All timer callbacks are defined in this file.
+ * The TMCB prefix means Timer Callback.
+ */
 
-  e->transformComponent->color = color;
-}
+/**
+ * Change the color of a specific Entity.
+ *
+ * @param Entity* e.
+ *
+ * @return void.
+ */
+void TMCB_ChangeColor(Entity* e);
+
+void TMCB_ChangeSize(Entity* e);
 
 #endif // CB_COLOR_CHANGE_H
