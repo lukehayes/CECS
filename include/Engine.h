@@ -1,4 +1,5 @@
 #ifndef CECS_ENGINE_H
+
 #define CECS_ENGINE_H
 
 #include "raylib.h"
@@ -18,7 +19,7 @@
  */
 void initEngine()
 {
-    SetTraceLogLevel(LOG_ALL);
+    SetTraceLogLevel(LOG_DEBUG);
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, GAME_TITLE);
     SetTargetFPS(60);
 }
