@@ -3,7 +3,8 @@ project(Defence)
 
 # Variables.
 # 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_C_FLAGS "-Wall")
+set(CMAKE_C_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(INCLUDE_DIRS "include")
 set(BIN_NAME "app")
