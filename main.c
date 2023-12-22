@@ -1,78 +1,70 @@
 #include "raylib.h"
 #include "Engine.h"
 #include "Externs.h"
-#include <stdlib.h>
+
+#include "ECS/Transform.h"
+
 #include <stdio.h>
 
 float delta = 0.0;
 
-typedef struct Component
+#define COMPONENT_COUNT 100
+
+void colorConvert(const char* val)
 {
-    int entity_id;
-} Component;
+    int c1 = (char)val[1];
+    printf("Char %i \n", c1);
+    int r = (int)val[1] + (int)val[2];
+    printf("R %i \n", r);
 
-typedef struct RenderComponent {
-    int entity_id;
-    int x;
-    int y;
-    int size;
-} RenderComponent;
+    int c2 = (int)val[3];
+    int g = c2 + (int)val[4];
 
+    int c3 = (int)val[5];
+    int b = c3 + (int)val[6];
 
-typedef struct Entity
-{
-    int entity_id;
-    RenderComponent* renderComponent;
-} Entity;
+    printf("Color: %s = r{%i}, g{%i}, b{%i} \n", val,r,g,b);
 
-Entity* entities[ENTITY_COUNT];
-
-void addRenderComponent(int entity_id, int x, int y)
-{
-    Entity* entity = entities[entity_id];
-    RenderComponent* comp = malloc(sizeof(RenderComponent));
-
-    comp->entity_id = entity_id;
-    comp->x = x;
-    comp->y = y;
-    comp->size = 100;
-
-    entity->renderComponent = comp;
 }
 
-void destroy_components(Entity** entites)
-{
-    for(int i = 0; i <= ENTITY_COUNT - 1; i++)
-    {
-        Entity* entity = entities[i];
-
-        if(entity->renderComponent)
-        {
-            free(entity->renderComponent);
-        }
-    }
-}
-
+TransformComponent* transforms[COMPONENT_COUNT];
 
 int main() {
 
     initEngine();
 
+    colorConvert("#FFFFFF");
+   colorConvert("#3a23aa");
+    colorConvert("#110022");
 
-    addRenderComponent(0, 100,100);
+    Color colors[3]= {
+        {104,82,84, 255},
+        {178,156,152, 255},
+        {255,250,246,255},
+    };
+
+    for(int i = 0; i <= COMPONENT_COUNT; i++)
+    {
+        int rc = GetRandomValue(0,2);
+        int rx = GetRandomValue(10,600);
+        int ry = GetRandomValue(10,600);
+        addTransform(i,rx,ry, colors[rc], transforms);
+    }
 
     while (!WindowShouldClose()) {
 
         PollInputEvents();
 
+        printf("FPS: %i \n", GetFPS());
+
         delta = GetFrameTime();
 
-        BeginDrawing();
+        UpdateSystem(transforms, GetFrameTime());
+        DrawSystem(transforms);
 
-        EndDrawing();
     }
 
-    destroy_components(entities);
+    DestroyTransforms(transforms);
 
     CloseWindow();
 
