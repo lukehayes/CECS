@@ -1,30 +1,31 @@
 #include "ECS/Transform.h"
+#include "ECS/ComponentList.h"
 #include <stdlib.h>
 
 
-void addTransform(int entity_id, int x, int y, Color color, TransformComponent** transforms)
+void addTransform(int entity_id, int x, int y, Color color, ComponentList* components)
 {
     int counter = 0;
-    TransformComponent* comp = malloc(sizeof(TransformComponent));
-    comp->position.x = x;
-    comp->position.y = y;
-    comp->size = 20;
-    comp->color = color;
+    TransformComponent* transform = malloc(sizeof(TransformComponent));
+    transform->position.x = x;
+    transform->position.y = y;
+    transform->size = 10;
+    transform->color = color;
 
-    while(transforms[counter])
-    {
-        counter++;
-    }
+    TransformComponent* comp = components->transforms[counter];
 
-    transforms[counter] = comp;
+    components->transforms[counter] = comp;
+
 }
 
-void DrawSystem(TransformComponent** transforms)
+void DrawSystem(ComponentList* components)
 {
     int counter = 0;
 
+    TransformComponent** transforms = components->transforms;
+
     BeginDrawing();
-    ClearBackground(BLACK);
+    ClearBackground((Color){76,38,61, 255});
 
     while(transforms[counter])
     {
@@ -50,16 +51,15 @@ void DrawSystem(TransformComponent** transforms)
 
 }
 
-void UpdateSystem(TransformComponent** transforms, float delta)
+void UpdateSystem(ComponentList* components, float delta)
 {
     int counter = 0;
+
+    TransformComponent** transforms = components->transforms;
 
     while(transforms[counter])
     {
         TransformComponent* transform = transforms[counter];
-
-        transform->position.x += 10 * delta;
-        transform->position.y += 10 * delta;
 
         counter++;
     }
@@ -71,11 +71,11 @@ void UpdateSystem(TransformComponent** transforms, float delta)
 
 }
 
-void DestroyTransforms(TransformComponent** transforms)
+void DestroyTransforms(ComponentList* components)
 {
     for(int i = 0; i <= COMPONENT_COUNT; i++)
     {
-        TransformComponent* transform = transforms[i];
+        TransformComponent* transform = components->transforms[i];
         free(transform);
     }
 

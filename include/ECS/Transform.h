@@ -1,15 +1,16 @@
-#ifndef ECS_TRANSFORM_H
-#define ECS_TRANSFORM_H
+#pragma once
 
 #include "raylib.h"
+#include "ECS/Globals.h"
+#include "ECS/ComponentList.h"
 
-#define COMPONENT_COUNT 100
 
 typedef struct TransfromComponent
 {
     Vector2 position;
     int size;
     Color color;
+
 } TransformComponent;
 
 
@@ -24,7 +25,7 @@ typedef struct TransfromComponent
 *
 * @return void
 */
-void addTransform(int entity_id, int x, int y, Color color, TransformComponent** transforms);
+void addTransform(int entity_id, int x, int y, Color color, ComponentList* components);
 
 /**
 * Transform Component draw system.
@@ -33,7 +34,7 @@ void addTransform(int entity_id, int x, int y, Color color, TransformComponent**
 *
 * @return void
 */
-void DrawSystem(TransformComponent** transforms);
+void DrawSystem(struct ComponentList* components);
 
 /**
 * Transform Component update system.
@@ -43,7 +44,7 @@ void DrawSystem(TransformComponent** transforms);
 *
 * @return void
 */
-void UpdateSystem(TransformComponent** transforms, float delta);
+void UpdateSystem(struct ComponentList* components, float delta);
 
 /**
 * Free all allocated Transform Components.
@@ -52,6 +53,4 @@ void UpdateSystem(TransformComponent** transforms, float delta);
 *
 * @return void
 */
-void DestroyTransforms(TransformComponent** transforms);
-
-#endif // DEBUG
+void DestroyTransforms(struct ComponentList* components);
