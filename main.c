@@ -37,6 +37,8 @@ int main() {
         DrawSystem(components);
     }
 
+    destroyComponentList(components);
+
     CloseWindow();
 
     return 0;
