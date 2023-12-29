@@ -9,8 +9,11 @@ typedef struct TransformComponent
     int size;
     Color color;
 
-} TransformComponent;
+    int dx;
+    int dy;
+    int speed;
 
+} TransformComponent;
 
 /**
 * Add a transform component to an entity.
