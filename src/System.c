@@ -33,32 +33,34 @@ void DrawSystem(ComponentList* components)
 
 void UpdateSystem(ComponentList* components, float delta)
 {
-    int counter = 0;
 
     TransformComponent** transforms = components->transforms;
 
-    while(transforms[counter])
+
+    for(int i = 0; i < COMPONENT_COUNT; i++)
     {
-        TransformComponent* transform = transforms[counter];
+        TransformComponent* transform = transforms[i];
 
-        counter++;
+
+        if(transform)
+        {
+            // BOUNDS CHECKING ----------------
+            bool xBound = transform->position.x < 5 || transform->position.x > 790;
+            bool yBound = transform->position.y < 5 || transform->position.y > 590;
+
+            if(xBound)
+            {
+                transform->dx = -transform->dx;
+            }
+
+            if(yBound)
+            {
+                transform->dy = -transform->dy;
+            }
+
+            // MOVEMENT ----------------
+            transform->position.x += transform->dx * transform->speed * delta;
+            transform->position.y += transform->dx * transform->speed * delta;
+        }
     }
-
-    if(counter >= COMPONENT_COUNT)
-    {
-        counter = 0;
-    }
-
 }
-
-void DestroyTransforms(ComponentList* components)
-{
-    for(int i = 0; i <= COMPONENT_COUNT; i++)
-    {
-        TransformComponent* transform = components->transforms[i];
-        free(transform);
-    }
-
-    TraceLog(LOG_DEBUG, "Tranform Components Destroyed.");
-}
-
