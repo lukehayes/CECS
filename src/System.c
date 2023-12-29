@@ -14,7 +14,7 @@ void DrawSystem(ComponentList* components)
 
     for(int i = 0; i<= COMPONENT_COUNT -1; i++)
     {
-        TransformComponent* transform = transforms[i];
+        TransformComponent* transform = (struct TransformComponent*)transforms[i];
 
         if(transform)
         {

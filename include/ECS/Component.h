@@ -3,7 +3,7 @@
 #include "raylib.h"
 #include "ECS/ComponentList.h"
 
-typedef struct TransfromComponent
+typedef struct TransformComponent
 {
     Vector2 position;
     int size;
