@@ -8,7 +8,22 @@ typedef struct ComponentList
     struct TransformComponent* transforms[COMPONENT_COUNT];
 } ComponentList;
 
+
+/**
+* Create an empty component list.
+* @return ComponentList*
+*/
 ComponentList* createComponentList();
 
+/**
+* Create a ComponentList and fill it with test entities.
+* @return ComponentList*
+*/
+ComponentList* fillComponentList();
+
+/**
+* Destroy a ComponentList.
+* @return void
+*/
 void destroyComponentList(ComponentList* list);
 

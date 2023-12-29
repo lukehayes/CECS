@@ -21,6 +21,22 @@ ComponentList* createComponentList()
     return components;
 }
 
+ComponentList* fillComponentList()
+{
+    ComponentList* components = createComponentList();
+
+    for(int i = 0; i < COMPONENT_COUNT; i++)
+   {
+        int rx = GetRandomValue(10,790);
+        int ry = GetRandomValue(10,590);
+        Color color = {150,150,150,255};
+
+        addTransform(i, rx,ry, color, components);
+    }
+
+    return components;
+}
+
 void destroyComponentList(ComponentList* components)
 {
     for(int i = 0; i <= COMPONENT_COUNT - 1; i++)
