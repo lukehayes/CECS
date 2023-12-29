@@ -23,12 +23,3 @@ void DrawSystem(ComponentList* components);
 * @return void
 */
 void UpdateSystem(ComponentList* components, float delta);
-
-/**
-* Free all allocated Transform Components.
-*
-* @param TransformComponent** color
-*
-* @return void
-*/
-void DestroyTransforms(ComponentList* components);
