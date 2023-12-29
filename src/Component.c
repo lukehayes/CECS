@@ -15,3 +15,12 @@ void addTransform(int entity_id, int x, int y, Color color, ComponentList* compo
 
     components->transforms[entity_id] = transform;
 }
+
+void addSound(int entity_id, const char* soundfile, ComponentList* components)
+{
+    SoundComponent* sound = malloc(sizeof(SoundComponent));
+
+    sound->sound = LoadSound(soundfile);
+
+    components->sounds[entity_id] = sound;
+}

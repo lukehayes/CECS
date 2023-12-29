@@ -44,6 +44,12 @@ void destroyComponentList(ComponentList* components)
         {
             free(components->transforms[i]);
         }
+
+        if(components->sounds[i])
+        {
+            UnloadSound(components->sounds[i]->sound);
+            free(components->transforms[i]);
+        }
     }
 
     TraceLog(LOG_DEBUG, "Components Destroyed");

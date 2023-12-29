@@ -3,6 +3,11 @@
 #include "raylib.h"
 #include "ECS/ComponentList.h"
 
+
+/**----------------------------------------------------------------------------
+ * Transform
+----------------------------------------------------------------------------**/
+
 typedef struct TransformComponent
 {
     Vector2 position;
@@ -28,3 +33,14 @@ typedef struct TransformComponent
 */
 void addTransform(int entity_id, int x, int y, Color color, ComponentList* components);
 
+/**----------------------------------------------------------------------------
+ * Sound
+----------------------------------------------------------------------------**/
+
+typedef struct SoundComponent
+{
+    Sound sound;
+
+} SoundComponent;
+
+void addSound(int entity_id, const char* soundfile, ComponentList* components);

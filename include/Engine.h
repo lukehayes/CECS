@@ -21,6 +21,7 @@ void initEngine()
 {
     SetTraceLogLevel(LOG_DEBUG);
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, GAME_TITLE);
+    InitAudioDevice();
     SetTargetFPS(60);
 }
 
