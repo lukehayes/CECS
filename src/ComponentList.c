@@ -14,7 +14,6 @@ ComponentList* createComponentList()
         components->transforms[i] = NULL;
     }
 
-
     TraceLog(LOG_DEBUG, "Component List Initialized");
     TraceLog(LOG_DEBUG, "Created Component List");
 
@@ -29,9 +28,9 @@ ComponentList* fillComponentList()
    {
         int rx = GetRandomValue(10,790);
         int ry = GetRandomValue(10,590);
-        Color color = {150,150,150,255};
+        Color color[2] = {DARK, LIGHT, WHITE};
 
-        addTransform(i, rx,ry, color, components);
+        addTransform(i, rx,ry, color[GetRandomValue(0,3)], components);
     }
 
     return components;
