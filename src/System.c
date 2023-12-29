@@ -45,8 +45,8 @@ void UpdateSystem(ComponentList* components, float delta)
         if(transform)
         {
             // BOUNDS CHECKING ----------------
-            bool xBound = transform->position.x < 5 || transform->position.x > 790;
-            bool yBound = transform->position.y < 5 || transform->position.y > 590;
+            bool xBound = transform->position.x < 5 || transform->position.x > WINDOW_WIDTH;
+            bool yBound = transform->position.y < 5 || transform->position.y > WINDOW_HEIGHT;
 
             if(xBound)
             {

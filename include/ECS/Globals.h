@@ -1,6 +1,10 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#define WINDOW_WIDTH  1920
+#define WINDOW_HEIGHT 1080
+#define GAME_TITLE    "ECS"
+
 #define ENTITY_COUNT 100
 #define COMPONENT_COUNT 100
 

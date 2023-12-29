@@ -26,8 +26,8 @@ ComponentList* fillComponentList()
 
     for(int i = 0; i < COMPONENT_COUNT; i++)
    {
-        int rx = GetRandomValue(10,790);
-        int ry = GetRandomValue(10,590);
+        int rx = GetRandomValue(10,WINDOW_WIDTH);
+        int ry = GetRandomValue(10,WINDOW_HEIGHT);
         Color color[2] = {DARK, LIGHT, WHITE};
 
         addTransform(i, rx,ry, color[GetRandomValue(0,3)], components);
