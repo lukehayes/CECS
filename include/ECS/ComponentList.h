@@ -7,6 +7,7 @@ typedef struct ComponentList
 {
     struct TransformComponent* transforms[COMPONENT_COUNT];
     struct SoundComponent*     sounds[COMPONENT_COUNT];
+    struct CollisionComponent* collisions[COMPONENT_COUNT];
 } ComponentList;
 
 

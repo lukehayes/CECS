@@ -8,6 +8,7 @@
 void DrawSystem(ComponentList* components)
 {
     struct TransformComponent** transforms = components->transforms;
+    struct CollisionComponent** collisions = components->collisions;
 
     BeginDrawing();
     ClearBackground((Color){76,38,61, 255});
@@ -15,6 +16,7 @@ void DrawSystem(ComponentList* components)
     for(int i = 0; i<= COMPONENT_COUNT -1; i++)
     {
         TransformComponent* transform = (struct TransformComponent*)transforms[i];
+        CollisionComponent* collision = (struct CollisionComponent*)collisions[i];
 
         if(transform)
         {
@@ -25,6 +27,17 @@ void DrawSystem(ComponentList* components)
                 transform->size,
                 transform->color
             );
+
+            if(collision)
+            {
+                DrawRectangle(
+                    collision->position.x,
+                    collision->position.y,
+                    collision->size,
+                    collision->size,
+                    collision->color
+                );
+            }
         }
     }
 
@@ -33,14 +46,11 @@ void DrawSystem(ComponentList* components)
 
 void UpdateSystem(ComponentList* components, float delta)
 {
-
     TransformComponent** transforms = components->transforms;
-
 
     for(int i = 0; i < COMPONENT_COUNT; i++)
     {
         TransformComponent* transform = transforms[i];
-
 
         if(transform)
         {
@@ -61,6 +71,23 @@ void UpdateSystem(ComponentList* components, float delta)
             // MOVEMENT ----------------
             transform->position.x += transform->dx * transform->speed * delta;
             transform->position.y += transform->dx * transform->speed * delta;
+        }
+    }
+}
+
+void CollisionSystem(ComponentList* components, float delta)
+{
+    TransformComponent** transforms = components->transforms;
+    CollisionComponent** collisions = components->collisions;
+
+    for(int i = 0; i < COMPONENT_COUNT; i++)
+    {
+        TransformComponent* transform = transforms[i];
+        CollisionComponent* collision = collisions[i];
+
+        if(transform && collision)
+        {
+            collision->position = transform->position;
         }
     }
 }

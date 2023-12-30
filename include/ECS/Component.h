@@ -44,3 +44,17 @@ typedef struct SoundComponent
 } SoundComponent;
 
 void addSound(int entity_id, const char* soundfile, ComponentList* components);
+
+/**----------------------------------------------------------------------------
+ * Collision
+----------------------------------------------------------------------------**/
+
+typedef struct CollisionComponent
+{
+    Vector2 position;
+    int size;
+    Color color;
+
+} CollisionComponent;
+
+void addCollision(int entity_id, int x, int y, int size, ComponentList* components);

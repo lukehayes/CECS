@@ -13,6 +13,7 @@ ComponentList* createComponentList()
     {
         components->transforms[i] = NULL;
         components->sounds[i] = NULL;
+        components->collisions[i] = NULL;
     }
 
     TraceLog(LOG_DEBUG, "Component Transforms Initialized");
@@ -51,6 +52,11 @@ void destroyComponentList(ComponentList* components)
         {
             UnloadSound(components->sounds[i]->sound);
             free(components->sounds[i]);
+        }
+
+        if(components->collisions[i])
+        {
+            free(components->collisions[i]);
         }
     }
 
