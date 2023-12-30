@@ -32,7 +32,7 @@ ComponentList* fillComponentList()
         int ry = GetRandomValue(10,WINDOW_HEIGHT);
         Color color[2] = {DARK, LIGHT, WHITE};
 
-        addTransform(i, rx,ry, color[GetRandomValue(0,3)], components);
+        addTransform(i, rx,ry, color[GetRandomValue(0,2)], components);
     }
 
     return components;
