@@ -50,7 +50,7 @@ void destroyComponentList(ComponentList* components)
         if(components->sounds[i])
         {
             UnloadSound(components->sounds[i]->sound);
-            free(components->transforms[i]);
+            free(components->sounds[i]);
         }
     }
 
