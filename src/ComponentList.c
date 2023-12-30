@@ -18,6 +18,7 @@ ComponentList* createComponentList()
 
     TraceLog(LOG_DEBUG, "Component Transforms Initialized");
     TraceLog(LOG_DEBUG, "Component Sounds Initialized");
+    TraceLog(LOG_DEBUG, "Component Collisions Initialized");
     TraceLog(LOG_DEBUG, "Component List Initialization Finished");
 
     return components;
@@ -34,6 +35,7 @@ ComponentList* fillComponentList()
         Color color[2] = {DARK, LIGHT, WHITE};
 
         addTransform(i, rx,ry, color[GetRandomValue(0,2)], components);
+        addCollision(i,rx / 2,ry / 2, TILE_SIZE, components);
     }
 
     return components;

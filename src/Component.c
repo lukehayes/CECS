@@ -6,7 +6,7 @@ void addTransform(int entity_id, int x, int y, Color color, ComponentList* compo
 
     transform->position.x = x;
     transform->position.y = y;
-    transform->size = 10;
+    transform->size = TILE_SIZE;
     transform->color = color;
 
     transform->dx = GetRandomValue(-1,1);

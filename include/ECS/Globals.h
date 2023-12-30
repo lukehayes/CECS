@@ -8,6 +8,9 @@
 #define ENTITY_COUNT 100
 #define COMPONENT_COUNT 100
 
+#define TILE_SIZE 16
+#define TILE_SCALE 10
+
 #define BG    (Color){76,38,61,255});
 #define DARK  (Color){102,84,81,255}
 #define LIGHT (Color){178,156,152,255}
