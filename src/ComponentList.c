@@ -8,14 +8,16 @@ ComponentList* createComponentList()
     ComponentList* components = malloc(sizeof(ComponentList));
     *components->transforms = malloc(sizeof(TransformComponent) * COMPONENT_COUNT - 1);
 
-    /* Initialze all of the component spaces to NULL. */
+   /* Initialze all of the component spaces to NULL. */
     for(int i = 0; i<= COMPONENT_COUNT -1; i++)
     {
         components->transforms[i] = NULL;
+        components->sounds[i] = NULL;
     }
 
-    TraceLog(LOG_DEBUG, "Component List Initialized");
-    TraceLog(LOG_DEBUG, "Created Component List");
+    TraceLog(LOG_DEBUG, "Component Transforms Initialized");
+    TraceLog(LOG_DEBUG, "Component Sounds Initialized");
+    TraceLog(LOG_DEBUG, "Component List Initialization Finished");
 
     return components;
 }
