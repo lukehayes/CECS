@@ -15,7 +15,8 @@
 void DrawSystem(ComponentList* components);
 
 /**
-* Transform Component update system.
+* General sytem to try new components etc.
+* More specific systems should be defined.
 *
 * @param TransformComponent** color
 * @param float delta
