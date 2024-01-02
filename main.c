@@ -4,6 +4,8 @@
 #include "ECS/Component.h"
 #include "ECS/Globals.h"
 
+#include "Util.h"
+
 #include <stdio.h>
 
 float delta = 0.0;
