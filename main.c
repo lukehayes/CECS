@@ -26,16 +26,7 @@ int main() {
         CollisionSystem(components, delta);
         DrawSystem(components);
 
-        char fps[100];
-        char ent_count[100];
-
-        sprintf(fps, "FPS: %i", GetFPS());
-        sprintf(ent_count, "Entity Count: %i", COMPONENT_COUNT);
-
-        BeginDrawing();
-            DrawText(fps, 10,10, 26, WHITE);
-            DrawText(ent_count, 10,50, 26, WHITE);
-        EndDrawing();
+        drawDebug();
 
     }
 
