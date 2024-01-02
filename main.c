@@ -26,7 +26,9 @@ int main() {
         CollisionSystem(components, delta);
         DrawSystem(components);
 
+        #ifdef DEV_DEBUG
         drawDebug();
+        #endif
 
     }
 
