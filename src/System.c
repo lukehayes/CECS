@@ -47,10 +47,12 @@ void DrawSystem(ComponentList* components)
 void UpdateSystem(ComponentList* components, float delta)
 {
     TransformComponent** transforms = components->transforms;
+    CollisionComponent** collisions = components->collisions;
 
     for(int i = 0; i < COMPONENT_COUNT; i++)
     {
         TransformComponent* transform = transforms[i];
+        CollisionComponent* collision = collisions[i];
 
         if(transform)
         {
@@ -71,6 +73,9 @@ void UpdateSystem(ComponentList* components, float delta)
             // MOVEMENT ----------------
             transform->position.x += transform->dx * transform->speed * delta;
             transform->position.y += transform->dx * transform->speed * delta;
+
+            /*collision->position.x = transform->position.x / 2;*/
+            /*collision->position.y = transform->position.y / 2;*/
         }
     }
 }
@@ -87,7 +92,7 @@ void CollisionSystem(ComponentList* components, float delta)
 
         if(transform && collision)
         {
-            collision->position = transform->position;
+            /*collision->position = transform->position;*/
         }
     }
 }

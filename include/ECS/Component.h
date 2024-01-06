@@ -57,4 +57,4 @@ typedef struct CollisionComponent
 
 } CollisionComponent;
 
-void addCollision(int entity_id, int x, int y, int size, ComponentList* components);
+void addCollision(int entity_id, int size, ComponentList* components);

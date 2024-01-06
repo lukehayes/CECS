@@ -35,7 +35,8 @@ ComponentList* fillComponentList()
         Color color[2] = {DARK, LIGHT, WHITE};
 
         addTransform(i, rx,ry, color[GetRandomValue(0,2)], components);
-        addCollision(i,rx / 2,ry / 2, TILE_SIZE, components);
+
+        addCollision(i,TILE_SIZE, components);
     }
 
     return components;

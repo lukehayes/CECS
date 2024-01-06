@@ -13,10 +13,10 @@ float delta = 0.0;
 int main() {
 
     initEngine();
-    ComponentList* components = fillComponentList();
+    ComponentList* components = createComponentList();
 
-    addTransform(0, 100,100, LIGHT, components);
-    addCollision(0, 100,100, 20, components);
+    addTransform(0, 100,100, RED, components);
+    addCollision(0, 200, components);
 
     while (!WindowShouldClose()) {
 
@@ -24,7 +24,7 @@ int main() {
 
         delta = GetFrameTime();
 
-        UpdateSystem(components, delta);
+        /*UpdateSystem(components, delta);*/
         CollisionSystem(components, delta);
         DrawSystem(components);
 
